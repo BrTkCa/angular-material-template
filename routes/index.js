@@ -1,5 +1,6 @@
 module.exports = function(app){
-  app.get('/', function(){
-    console.log('Hello Router');
-  })
+  let index = app.controllers.index;
+
+  app.get('/', index.index);
+
 }
