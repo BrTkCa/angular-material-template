@@ -84,5 +84,30 @@
   border-radius: inherit;
 }
 
+md-content .ext-content {
+  margin: 10px;
+}
 
+.bottom-right{
+ position: fixed;
+ bottom: 0;
+ right: 0;
+}
 
+.fb-gray {
+  background-color: #e9ebee;
+}
+
+.white {
+  background-color: #fff;
+}
+
+.list-robos {
+  float: right;
+  width: 50%;
+}
+
+.lista-robos-conteudo{
+  overflow-y: scroll;
+  max-height: 500px;
+}

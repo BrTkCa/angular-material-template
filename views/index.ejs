@@ -5,101 +5,91 @@
     <title>Angular Material Template Demo</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/bower/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
-<body>
+<body class="white">
 
-    <div ng-controller="PanelGroupsCtrl as ctrl" ng-cloak>
+    <div ng-controller="AppCtrl as ctrl" ng-cloak>
 
-        <md-toolbar class="md-accent">
-            <div class="md-toolbar-tools">
-                <md-button class="md-fab md-accent" aria-label="Code" ng-click="ctrl.showContentMenu($event, ctrl.code)">
-                    <md-icon md-svg-icon="/images/icons/ic_code_24px.svg"></md-icon>
-                </md-button>
-                <h2>Toolbar with grouped panels (Maximum open: 2)</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" aria-label="Favorite" ng-click="ctrl.showToolbarMenu($event, ctrl.favorite)">
-                    <md-icon md-svg-icon="/images/icons/favorite.svg"></md-icon>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.showToolbarMenu($event, ctrl.more)">
-                    <md-icon md-svg-icon="/images/icons/more_vert.svg"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+        <md-content class="md-padding" layout-padding>
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="goto('page1')" name="page1">
+                    Estatísticas globais
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('page2')" name="page2">
+                    Painel de captura
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('page3')" name="page3">
+                    SLA de Captura
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('page4')" name="page4">
+                    SLA de Cadastro
+                </md-nav-item>
+            </md-nav-bar>
+            <div class="ext-content">
+                <div ng-show="currentNavItem == 'page1'" class="list-robos">
 
-        <md-content layout-padding>
-            <p>
-                Panels can be added to a group. Groups are used to configure specific behaviors on multiple panels. To add a panel to a group, use the
-                <code>$mdPanel.newPanelGroup</code> method, or simply add a group name to the configuration object passed into the <code>$mdPanel.create</code> method.
-            </p>
-            <p>
-                Grouping allows for methods to be applied to several panels at once, i.e. closing all panels within the toolbar group, or destroying all panels within a dialog group. With the <code>maxOpen</code> property, you can also limit the number of panels allowed open within a specific group. This can be useful in limiting the number of menu panels allowed open at a time, etc.
-            </p>
+                    <div layout="row">
+                        <div flex="50">
+                            <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels">                  
+                                </canvas>
+                        </div>
 
-            <div layout="row">
-                <div layout="column" flex>
-                    <h2>Multiple Groups</h2>
-                    <p>
-                        Panels can be added to multiple groups. The <code>groupName</code> parameter in the panel configuration can be a string or an array of strings. This allows for the functionality or constraints of multiple groups to apply to each created panel.
-                    </p>
-                    <p>
-                        To give an example, the menus within the toolbar above have been added to the <strong>toolbar</strong> and <strong>menus</strong> groups. The menus to the right have been added to the <strong>menus</strong> group as well. The maximum number of open panels within the
-                        <strong>toolbar</strong> group is <strong>2</strong>. Within the
-                        <strong>menus</strong> group it is <strong>3</strong>. Opening the menus to the right and more than one in the toolbar will result in the first opened panel to the right to close.
-                    </p>
-                </div>
-                <div style="width: 45px;"></div>
-                <div layout="row" flex="nogrow">
-                    <md-button class="md-fab md-primary" aria-label="Tools" ng-click="ctrl.showContentMenu($event, ctrl.tools)">
-                        <md-icon md-svg-icon="/images/icons/ic_build_24px.svg"></md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-accent" aria-label="Code" ng-click="ctrl.showContentMenu($event, ctrl.code)">
-                        <md-icon md-svg-icon="/images/icons/ic_code_24px.svg"></md-icon>
-                    </md-button>
+                        <div flex="50">
+                            <md-toolbar layout="row">
+                                <div class="md-toolbar-tools">
+                                    <span>Execuções dos robôs</span>
+                                </div>
+                            </md-toolbar>
+
+                            <md-list flex class="lista-robos-conteudo">
+                                <md-subheader class="md-no-sticky">Última ação de cadastros novos dos sistemas por estado</md-subheader>
+                                <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+                                    <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>{{ item.who }}</h3>
+                                        <h4>{{ item.what }}</h4>
+                                        <p>{{ item.notes }}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
                 </div>
             </div>
         </md-content>
 
-    </div>
+        <div class="bottom-right lock-size" layout="row">
+            <md-fab-speed-dial md-open="ctrl.isOpen" md-direction="{{ctrl.selectedDirection}}" ng-class="ctrl.selectedMode">
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-primary">
+                        <md-icon md-svg-src="/images/icons/menu.svg"></md-icon>
+                    </md-button>
+                </md-fab-trigger>
 
-    <div class="md-menu-demo" ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
-
-        <div class="menu-demo-container" layout-align="center center" layout="column">
-            <h2 class="md-title">Simple dropdown menu</h2>
-            <p>Applying the <code>md-menu-origin</code> and <code>md-menu-align-target</code> attributes ensure that the menu elements align. Note: If you select the Redial menu option, then a modal dialog will zoom out of the phone icon button.</p>
-            <md-menu>
-                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
-                    <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
-                </md-button>
-                <md-menu-content width="4">
-                    <md-menu-item>
-                        <md-button ng-click="ctrl.redial($event)">
-                            <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
-                            Redial
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
-                            <md-icon md-svg-icon="call:voicemail"></md-icon>
-                            Check voicemail
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-divider></md-menu-divider>
-                    <md-menu-item>
-                        <md-button ng-click="ctrl.toggleNotifications()">
-                            <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
-                            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
+                <md-fab-actions>
+                    <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+                        <md-icon md-svg-src="/images/icons/twitter.svg" aria-label="Twitter"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+                        <md-icon md-svg-src="/images/icons/facebook.svg" aria-label="Facebook"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+                        <md-icon md-svg-src="/images/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-fab-speed-dial>
         </div>
+
     </div>
 
     <script src="/bower/angular/angular.js"></script>
     <script src="/bower/angular-aria/angular-aria.js"></script>
     <script src="/bower/angular-animate/angular-animate.js"></script>
     <script src="/bower/angular-material/angular-material.js"></script>
+    <script src="/bower/chart.js/dist/Chart.min.js"></script>
+    <script src="/bower/angular-chart.js/dist/angular-chart.min.js"></script>
     <script src="/angular-controllers/index.js"></script>
     <script src="/angular-controllers/template/menu.js"></script>
     <script src="/angular-controllers/template/panel.js"></script>

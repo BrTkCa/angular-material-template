@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>JQVMap - USA Map</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+    <!-- Mobile Specific Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link href="dist/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #vmap {
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .jqvmap-region {
+            cursor: default !important;
+        }
+
+        .map-pin {
+            width: 64px;
+            height: 50px;
+            position: absolute;
+            top: -25px;
+            left: -32px;
+            background-size: 32px 32px;
+            background-repeat: no-repeat;
+            text-align: center;
+            background-position: top center;
+            color: #888;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .map-pin span {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            left: 0;
+        }
+
+        .red {
+            background-image: url('images/marker/red.png');
+        }
+
+        .blue {
+            background-image: url('images/marker/blue.png');
+        }
+
+        .purple {
+            background-image: url('images/marker/purple.png');
+        }
+        /* Setup basic CSS for Label */
+
+        .jqvmap-pin {
+            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+            cursor: default;
+        }
+        /* Reposition Labels that are not quite right ( labels are centered in shape, and sometimes need tweaking ) */
+
+        #jqvmap1_fl_pin {
+            margin-left: 5%;
+        }
+    </style>
+
+    <script type="text/javascript" src="dist/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="dist/jquery.vmap.js"></script>
+    <script type="text/javascript" src="dist/maps/jquery.vmap.brazil.js" charset="utf-8"></script>
+
+    <script>
+        function escapeXml(string) {
+            return string.replace(/[<>]/g, function(c) {
+                switch (c) {
+                    case '<':
+                        return '\u003c';
+                    case '>':
+                        return '\u003e';
+                }
+            });
+        }
+
+        jQuery(document).ready(function() {
+
+            var pins = {
+                sp: escapeXml('<div class="map-pin red"><span>SP 85%</span></div>'),
+                ro: escapeXml('<div class="map-pin blue"><span>RO 70%</span></div>'),
+                rj: escapeXml('<div class="map-pin purple"><span>RJ 50%</span></div>'),
+                es: escapeXml('<div class="map-pin purple"><span>ES 80%</span></div>'),
+                mt: escapeXml('<div class="map-pin purple"><span>MT 60%</span></div>'),
+                ms: escapeXml('<div class="map-pin purple"><span>MS 95%</span></div>')
+            };
+
+            jQuery('#vmap').vectorMap({
+                backgroundColor: '#fff',
+                borderColor: '#333',
+                map: 'brazil_br',
+                pins: pins,
+                color: '#fff',
+                pinMode: 'content',
+                hoverOpacity: 0.7,
+                selectedColor: '#666666',
+                enableZoom: true,
+                scaleColors: ['#E6F2F0', '#149B7E'],
+                normalizeFunction: 'polynomial',
+                showTooltip: false,
+                onRegionClick: function(event) {
+                    event.preventDefault();
+                }
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="vmap" style="height:600px;"></div>
+</body>
+
+</html>
