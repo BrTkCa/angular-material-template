@@ -1,114 +1,118 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  app.controller('AppCtrl', function($scope) {
-      $scope.currentNavItem = 'page1';
-      var imagePath = '/images/60.jpeg';
-      
-      this.topDirections = ['left', 'up'];
-      this.bottomDirections = ['down', 'right'];
+    app.controller('AppCtrl', function($scope) {
+        $scope.currentNavItem = 'page1';
+        var imagePath = '/images/60.jpeg';
 
-      this.isOpen = false;
+        this.topDirections = ['left', 'up'];
+        this.bottomDirections = ['down', 'right'];
 
-      this.availableModes = ['md-fling', 'md-scale'];
-      this.selectedMode = 'md-fling';
+        this.isOpen = false;
 
-      this.availableDirections = ['up', 'down', 'left', 'right'];
-      this.selectedDirection = 'up';
+        this.availableModes = ['md-fling', 'md-scale'];
+        this.selectedMode = 'md-fling';
 
-      $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-      $scope.data = [300, 500, 100];
+        this.availableDirections = ['up', 'down', 'left', 'right'];
+        this.selectedDirection = 'up';
 
-       $scope.phones = [
-      {
-        type: 'Home',
-        number: '(555) 251-1234',
-        options: {
-          icon: 'communication:phone'
-        }
-      },
-      {
-        type: 'Cell',
-        number: '(555) 786-9841',
-        options: {
-          icon: 'communication:phone',
-          avatarIcon: true
-        }
-      },
-      {
-        type: 'Office',
-        number: '(555) 314-1592',
-        options: {
-          face : imagePath
-        }
-      },
-      {
-        type: 'Offset',
-        number: '(555) 192-2010',
-        options: {
-          offset: true,
-          actionIcon: 'communication:phone'
-        }
-      }
-    ];
-    $scope.todos = [
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      },
-      {
-        face : imagePath,
-        what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
-        when: '3:08PM',
-        notes: " I'll be in your neighborhood doing errands"
-      }                  
-    ];
+        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+        $scope.data = [300, 500, 100];
+        $scope.options = {
+            legend: {
+                display: true
+            },
+            responsive: false,
+        };
+
+        $scope.phones = [{
+                type: 'Home',
+                number: '(555) 251-1234',
+                options: {
+                    icon: 'communication:phone'
+                }
+            },
+            {
+                type: 'Cell',
+                number: '(555) 786-9841',
+                options: {
+                    icon: 'communication:phone',
+                    avatarIcon: true
+                }
+            },
+            {
+                type: 'Office',
+                number: '(555) 314-1592',
+                options: {
+                    face: imagePath
+                }
+            },
+            {
+                type: 'Offset',
+                number: '(555) 192-2010',
+                options: {
+                    offset: true,
+                    actionIcon: 'communication:phone'
+                }
+            }
+        ];
+        $scope.todos = [{
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            }
+        ];
     });
 
 })();

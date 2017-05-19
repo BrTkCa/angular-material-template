@@ -1,10 +1,11 @@
+body {
+  overflow-y: hidden;
+}
 .menudemoBasicUsage .md-menu-demo {
   padding: 24px; }
 
 .menudemoBasicUsage .menu-demo-container {
   min-height: 200px; }
-
-  
 
 .menu-panel-container {
   pointer-events: auto;
@@ -109,5 +110,5 @@ md-content .ext-content {
 
 .lista-robos-conteudo{
   overflow-y: scroll;
-  max-height: 500px;
+  max-height: 45%;
 }

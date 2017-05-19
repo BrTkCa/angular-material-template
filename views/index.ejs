@@ -27,37 +27,39 @@
                     SLA de Cadastro
                 </md-nav-item>
             </md-nav-bar>
-            <div class="ext-content">
-                <div ng-show="currentNavItem == 'page1'" class="list-robos">
+        <div class="ext-content">
+            <div ng-show="currentNavItem == 'page1'">
 
-                    <div layout="row">
-                        <div flex="50">
-                            <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels">                  
-                                </canvas>
-                        </div>
+                <div layout="row" layout-sm="column">
+                    <div flex="50">
+                        <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
+                        chart-options="options">                  
+                        </canvas>
+                    </div>
 
-                        <div flex="50">
-                            <md-toolbar layout="row">
-                                <div class="md-toolbar-tools">
-                                    <span>Execuções dos robôs</span>
+                    <div flex="50" class="list-robos">
+                        <md-toolbar layout="row">
+                            <div class="md-toolbar-tools">
+                                <span>Execuções dos robôs</span>
+                            </div>
+                        </md-toolbar>
+
+                        <md-list flex class="lista-robos-conteudo">
+                            <md-subheader class="md-no-sticky">Última ação de cadastros novos dos sistemas por estado</md-subheader>
+                            <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+                                <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                                <div class="md-list-item-text" layout="column">
+                                    <h3>{{ item.who }}</h3>
+                                    <h4>{{ item.what }}</h4>
+                                    <p>{{ item.notes }}</p>
                                 </div>
-                            </md-toolbar>
-
-                            <md-list flex class="lista-robos-conteudo">
-                                <md-subheader class="md-no-sticky">Última ação de cadastros novos dos sistemas por estado</md-subheader>
-                                <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
-                                    <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
-                                    <div class="md-list-item-text" layout="column">
-                                        <h3>{{ item.who }}</h3>
-                                        <h4>{{ item.what }}</h4>
-                                        <p>{{ item.notes }}</p>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
                 </div>
             </div>
+        </div>
+        
         </md-content>
 
         <div class="bottom-right lock-size" layout="row">
